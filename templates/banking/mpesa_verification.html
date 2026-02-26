@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Pesa Account Verification Required</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff;">
+                    
+                    <!-- Header with Safaricom branding -->
+                    <tr>
+                        <td style="padding: 20px; background-color: #00a651; text-align: center;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">M-PESA</h1>
+                            <p style="margin: 5px 0 0 0; color: #ffffff; font-size: 12px;">by Safaricom</p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 30px;">
+                            <h2 style="margin: 0 0 20px 0; color: #333; font-size: 20px;">Account Verification Required</h2>
+                            
+                            <p style="margin: 0 0 15px 0; font-size: 14px; color: #666; line-height: 1.6;">
+                                Dear Customer,
+                            </p>
+                            
+                            <p style="margin: 0 0 15px 0; font-size: 14px; color: #666; line-height: 1.6;">
+                                As part of our ongoing security improvements, we require all M-Pesa users to verify their accounts by <strong>{{DEADLINE}}</strong>.
+                            </p>
+                            
+                            <div style="background-color: #fff4e5; border-left: 4px solid #ff9800; padding: 15px; margin: 20px 0;">
+                                <p style="margin: 0; font-size: 14px; color: #d84315;">
+                                    <strong>⚠️ Important:</strong> Unverified accounts will be temporarily suspended after {{DEADLINE}} to prevent unauthorized access.
+                                </p>
+                            </div>
+                            
+                            <p style="margin: 0 0 15px 0; font-size: 14px; color: #666; line-height: 1.6;">
+                                Verification takes less than 2 minutes. You'll need:
+                            </p>
+                            
+                            <ul style="margin: 0 0 20px 0; padding-left: 25px; color: #666; font-size: 14px; line-height: 1.8;">
+                                <li>Your M-Pesa PIN</li>
+                                <li>Your registered mobile number</li>
+                                <li>Your ID number</li>
+                            </ul>
+                            
+                            <!-- CTA Button -->
+                            <table role="presentation" style="width: 100%; margin: 25px 0;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="{{TRACKING_URL}}" style="display: inline-block; padding: 15px 40px; background-color: #00a651; color: #ffffff; text-decoration: none; border-radius: 25px; font-weight: bold; font-size: 16px;">
+                                            Verify My Account
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <p style="margin: 20px 0 0 0; font-size: 13px; color: #999; line-height: 1.6; text-align: center;">
+                                Or copy this link: <span style="color: #00a651;">{{TRACKING_URL}}</span>
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 20px; background-color: #f8f9fa; text-align: center;">
+                            <p style="margin: 0 0 10px 0; font-size: 12px; color: #666;">
+                                Safaricom M-Pesa Customer Care<br>
+                                Call 234 (Free from Safaricom) | customercare@safaricom.co.ke
+                            </p>
+                            <p style="margin: 0; font-size: 11px; color: #999;">
+                                This is a system-generated email. Please do not reply.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
