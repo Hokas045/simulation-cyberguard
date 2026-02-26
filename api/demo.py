@@ -380,6 +380,276 @@ async def phishing_demo():
                 background: #5a6268;
             }
             
+            /* Windows Defender Notification Styles */
+            .defender-notification {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 400px;
+                background: #2d2d2d;
+                border-radius: 8px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+                overflow: hidden;
+                animation: slideInRight 0.5s ease-out;
+                z-index: 10000;
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(500px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            .defender-header {
+                background: #0078d4;
+                color: white;
+                padding: 12px 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            
+            .defender-icon {
+                font-size: 24px;
+            }
+            
+            .defender-body {
+                padding: 20px 15px;
+                color: white;
+            }
+            
+            .defender-threat {
+                background: #3d3d3d;
+                padding: 15px;
+                border-radius: 5px;
+                margin: 15px 0;
+                border-left: 4px solid #ff4444;
+            }
+            
+            .defender-threat-name {
+                color: #ff4444;
+                font-weight: 600;
+                margin-bottom: 8px;
+                font-size: 15px;
+            }
+            
+            .defender-status {
+                color: #ffd700;
+                margin-top: 10px;
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .defender-scanning {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                border: 3px solid #ffd700;
+                border-top-color: transparent;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+            
+            .defender-actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 15px;
+            }
+            
+            .defender-btn {
+                flex: 1;
+                padding: 10px;
+                border: none;
+                border-radius: 4px;
+                font-weight: 600;
+                cursor: pointer;
+                font-size: 13px;
+                transition: all 0.2s;
+            }
+            
+            .defender-btn-primary {
+                background: #0078d4;
+                color: white;
+            }
+            
+            .defender-btn-primary:hover {
+                background: #005a9e;
+            }
+            
+            .defender-btn-secondary {
+                background: #3d3d3d;
+                color: white;
+            }
+            
+            .scanning-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+            }
+            
+            .scanning-overlay.active {
+                display: flex;
+            }
+            
+            .scanning-window {
+                background: #1e1e1e;
+                border-radius: 8px;
+                width: 600px;
+                max-width: 90%;
+                box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+                overflow: hidden;
+            }
+            
+            .scanning-header {
+                background: #0078d4;
+                color: white;
+                padding: 15px 20px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .scanning-header-icon {
+                font-size: 32px;
+            }
+            
+            .scanning-header-text h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+            }
+            
+            .scanning-header-text p {
+                margin: 5px 0 0 0;
+                font-size: 13px;
+                opacity: 0.9;
+            }
+            
+            .scanning-content {
+                padding: 30px;
+                color: white;
+            }
+            
+            .scan-status {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .scan-status-text {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .scan-progress {
+                width: 100%;
+                height: 8px;
+                background: #3d3d3d;
+                border-radius: 4px;
+                overflow: hidden;
+                margin-bottom: 10px;
+            }
+            
+            .scan-progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #0078d4, #00a8ff);
+                animation: progress 3s ease-in-out forwards;
+            }
+            
+            @keyframes progress {
+                0% { width: 0%; }
+                50% { width: 75%; }
+                100% { width: 100%; }
+            }
+            
+            .scan-file-info {
+                font-size: 12px;
+                color: #aaa;
+                text-align: center;
+            }
+            
+            .threat-detected {
+                background: #3d0000;
+                border: 2px solid #ff4444;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .threat-detected-header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .threat-icon-large {
+                font-size: 48px;
+            }
+            
+            .threat-info h3 {
+                color: #ff4444;
+                margin: 0 0 8px 0;
+                font-size: 18px;
+            }
+            
+            .threat-info p {
+                margin: 0;
+                font-size: 13px;
+                color: #ffaaaa;
+            }
+            
+            .threat-details {
+                background: #2d2d2d;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+            
+            .threat-detail-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #3d3d3d;
+                font-size: 13px;
+            }
+            
+            .threat-detail-row:last-child {
+                border-bottom: none;
+            }
+            
+            .threat-detail-label {
+                color: #aaa;
+            }
+            
+            .threat-detail-value {
+                color: white;
+                font-weight: 600;
+            }
+            
+            .threat-detail-value.danger {
+                color: #ff4444;
+            }
+            
             .warning-box {
                 background: #fff3cd;
                 border: 2px solid #ffc107;
@@ -960,8 +1230,14 @@ async def phishing_demo():
                 attackStage = 2;
                 const body = document.getElementById('modalBody');
                 
+                if (type === 'virus') {
+                    // Show Windows Defender-style scanning
+                    showVirusDetection();
+                    return;
+                }
+                
                 // Show loading
-                const loadingMessage = type === 'virus' ? 'Downloading file...' : 'Verifying your information...';
+                const loadingMessage = 'Verifying your information...';
                 body.innerHTML = `
                     <div class="loading active">
                         <div class="loader"></div>
@@ -975,35 +1251,178 @@ async def phishing_demo():
                 }, 2000);
             }
             
+            function showVirusDetection() {
+                const body = document.getElementById('modalBody');
+                
+                // Show scanning overlay
+                body.innerHTML = `
+                    <div class="scanning-overlay active">
+                        <div class="scanning-window">
+                            <div class="scanning-header">
+                                <div class="scanning-header-icon">🛡️</div>
+                                <div class="scanning-header-text">
+                                    <h2>Windows Security</h2>
+                                    <p>Real-time protection</p>
+                                </div>
+                            </div>
+                            <div class="scanning-content">
+                                <div class="scan-status">
+                                    <div class="scan-status-text">
+                                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                                            <div class="defender-scanning"></div>
+                                            <span>Scanning file...</span>
+                                        </div>
+                                    </div>
+                                    <div class="scan-progress">
+                                        <div class="scan-progress-bar"></div>
+                                    </div>
+                                    <div class="scan-file-info" id="scanningFile">
+                                        Checking: Invoice_DHL_2026_8347.pdf.exe
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Simulate scanning progress
+                setTimeout(() => {
+                    document.getElementById('scanningFile').innerText = 'Analyzing behavior patterns...';
+                }, 800);
+                
+                setTimeout(() => {
+                    document.getElementById('scanningFile').innerText = 'Checking malware signatures...';
+                }, 1600);
+                
+                // Show threat detected after scan
+                setTimeout(() => {
+                    showThreatDetected();
+                }, 3000);
+            }
+            
+            function showThreatDetected() {
+                const body = document.getElementById('modalBody');
+                
+                body.innerHTML = `
+                    <div class="scanning-overlay active">
+                        <div class="scanning-window">
+                            <div class="scanning-header">
+                                <div class="scanning-header-icon">🛡️</div>
+                                <div class="scanning-header-text">
+                                    <h2>Windows Security</h2>
+                                    <p>Threat detected and blocked</p>
+                                </div>
+                            </div>
+                            <div class="scanning-content">
+                                <div class="threat-detected">
+                                    <div class="threat-detected-header">
+                                        <div class="threat-icon-large">⚠️</div>
+                                        <div class="threat-info">
+                                            <h3>Trojan:Win32/Phish.A!ml</h3>
+                                            <p>Severe threat detected and quarantined</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="threat-details">
+                                        <div class="threat-detail-row">
+                                            <span class="threat-detail-label">Status:</span>
+                                            <span class="threat-detail-value">✓ Blocked & Quarantined</span>
+                                        </div>
+                                        <div class="threat-detail-row">
+                                            <span class="threat-detail-label">File:</span>
+                                            <span class="threat-detail-value">Invoice_DHL_2026_8347.pdf.exe</span>
+                                        </div>
+                                        <div class="threat-detail-row">
+                                            <span class="threat-detail-label">Threat Level:</span>
+                                            <span class="threat-detail-value danger">SEVERE</span>
+                                        </div>
+                                        <div class="threat-detail-row">
+                                            <span class="threat-detail-label">Detection:</span>
+                                            <span class="threat-detail-value">Banking Trojan + Keylogger + Ransomware</span>
+                                        </div>
+                                        <div class="threat-detail-row">
+                                            <span class="threat-detail-label">Detected:</span>
+                                            <span class="threat-detail-value">${new Date().toLocaleTimeString()}</span>
+                                        </div>
+                                        <div class="threat-detail-row">
+                                            <span class="threat-detail-label">Origin:</span>
+                                            <span class="threat-detail-value danger">dhl-tracking-ke.com (Malicious)</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="margin-top: 20px; padding: 15px; background: #2d2d2d; border-radius: 5px; border-left: 4px solid #00ff00;">
+                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                            <span style="font-size: 24px;">✅</span>
+                                            <strong style="color: #00ff00;">Your device is protected</strong>
+                                        </div>
+                                        <p style="margin: 0; font-size: 13px; color: #aaa;">
+                                            This file attempted to install malware that would steal your banking credentials, 
+                                            capture keystrokes, and encrypt your files for ransom. Windows Defender successfully 
+                                            blocked the threat before it could cause any damage.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="defender-actions">
+                                    <button class="defender-btn defender-btn-primary" onclick="showVirusEducation()">
+                                        View Details & Learn More
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            function showVirusEducation() {
+                showAttackResults('virus');
+            }
+            
             function showAttackResults(type) {
                 const body = document.getElementById('modalBody');
                 
                 if (type === 'virus') {
                     body.innerHTML = `
                         <div style="padding: 30px;">
-                            <h2 style="color: #d9534f; margin-bottom: 20px; text-align: center; font-size: 28px;">
-                                🦠 MALWARE DOWNLOADED - SYSTEM COMPROMISED!
+                            <h2 style="color: #28a745; margin-bottom: 20px; text-align: center; font-size: 28px;">
+                                ✅ PROTECTED! Antivirus Blocked the Threat
                             </h2>
                             
                             <p style="text-align: center; color: #666; font-size: 16px; margin-bottom: 30px;">
-                                In a real attack, your entire device would now be infected with malware.
+                                Windows Defender successfully detected and stopped the malware. <br>
+                                <strong>Without antivirus, this is what would have happened:</strong>
                             </p>
                             
-                            <div class="captured-data">
-                                <h3>🚨 What the Malware Would Do:</h3>
-                                <div class="data-item"><strong>Keylogger Installed:</strong> Records every keystroke (passwords, messages, credit cards)</div>
-                                <div class="data-item"><strong>Screen Capture:</strong> Takes screenshots of your banking, email, and sensitive data</div>
-                                <div class="data-item"><strong>Webcam Access:</strong> Activates camera without your knowledge</div>
-                                <div class="data-item"><strong>File Encryption:</strong> Ransomware locks all your files (documents, photos, videos)</div>
-                                <div class="data-item"><strong>Credential Theft:</strong> Steals saved passwords from browsers and apps</div>
-                                <div class="data-item"><strong>Banking Trojan:</strong> Intercepts mobile banking and M-Pesa transactions</div>
-                                <div class="data-item"><strong>Botnet Recruitment:</strong> Your device joins criminal network for DDoS attacks</div>
-                                <div class="data-item"><strong>Data Exfiltration:</strong> Uploads contacts, photos, documents to attacker's server</div>
-                                <div class="data-item"><strong>Cryptocurrency Miner:</strong> Uses your device to mine crypto (slows performance, increases bills)</div>
+                            <div style="background: #f8d7da; border: 2px solid #dc3545; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                                <h3 style="color: #721c24; margin-bottom: 15px;">🦠 What the Malware Would Have Done:</h3>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Keylogger:</strong> Records every keystroke (passwords, messages, credit cards)
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Screen Capture:</strong> Takes screenshots of banking, email, and sensitive data
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Webcam Access:</strong> Activates camera without your knowledge
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Ransomware:</strong> Encrypts all files and demands KSH 50,000+ to decrypt
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Banking Trojan:</strong> Intercepts M-Pesa and mobile banking transactions
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Data Theft:</strong> Steals browser passwords, contacts, photos, documents
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Crypto Miner:</strong> Slows your device to mine cryptocurrency for attackers
+                                </div>
+                                <div style="background: white; padding: 12px 15px; margin: 8px 0; border-radius: 5px; font-size: 13px; color: #721c24;">
+                                    <strong>Botnet:</strong> Uses your device for criminal DDoS attacks
+                                </div>
                             </div>
                             
                             <div class="timeline">
-                                <h3 style="color: #333; margin-bottom: 20px;">Attack Timeline - What Just Happened:</h3>
+                                <h3 style="color: #333; margin-bottom: 20px;">🛡️ How Windows Defender Saved You:</h3>
                                 
                                 <div class="timeline-item">
                                     <h4>0:00 - Malicious Email Sent</h4>
@@ -1012,73 +1431,78 @@ async def phishing_demo():
                                 
                                 <div class="timeline-item">
                                     <h4>0:10 - Email Opened</h4>
-                                    <p>You opened email. Tracking pixel confirmed delivery and captured your IP address.</p>
+                                    <p>You opened email. Tracking pixel confirmed delivery (this part can't be blocked easily).</p>
                                 </div>
                                 
                                 <div class="timeline-item">
-                                    <h4>0:15 - Malicious Link Clicked</h4>
-                                    <p>You clicked download button. Redirected to fake DHL website hosting the malware.</p>
+                                    <h4>0:15 - Download Link Clicked</h4>
+                                    <p>You clicked download button. Redirected to fake DHL website hosting malware.</p>
                                 </div>
                                 
                                 <div class="timeline-item">
-                                    <h4>0:20 - "File" Downloaded</h4>
-                                    <p>File "Invoice_DHL_2026_8347.pdf.exe" would download. The .exe extension reveals it's an executable program, not a PDF.</p>
+                                    <h4>0:20 - File Scanned in Real-Time ✓</h4>
+                                    <p><strong style="color: #28a745;">Windows Defender activated:</strong> Immediately scanned "Invoice_DHL_2026_8347.pdf.exe" as it was being downloaded.</p>
                                 </div>
                                 
                                 <div class="timeline-item">
-                                    <h4>0:25 - Malware Executed</h4>
-                                    <p>You double-clicked the file. Malware installs silently in background, no visible window.</p>
+                                    <h4>0:22 - Malware Signature Detected ✓</h4>
+                                    <p><strong style="color: #28a745;">Threat identified:</strong> Trojan:Win32/Phish.A!ml - known banking trojan with ransomware capabilities.</p>
                                 </div>
                                 
                                 <div class="timeline-item">
-                                    <h4>0:30 - Initial Infection</h4>
-                                    <p>Malware disables antivirus, creates hidden processes, establishes connection to command server.</p>
+                                    <h4>0:23 - Download Blocked & File Quarantined ✓</h4>
+                                    <p><strong style="color: #28a745;">Protection successful:</strong> File prevented from reaching your system. Quarantined in isolated storage.</p>
                                 </div>
                                 
                                 <div class="timeline-item">
-                                    <h4>WITHIN 5 MINUTES - Payload Deployment</h4>
-                                    <p>Keylogger activates. Screen capture begins. Saved passwords extracted from browsers.</p>
+                                    <h4>0:24 - User Notified ✓</h4>
+                                    <p><strong style="color: #28a745;">You were alerted:</strong> Windows Security showed notification about the blocked threat.</p>
                                 </div>
                                 
                                 <div class="timeline-item">
-                                    <h4>WITHIN 1 HOUR - Full Compromise</h4>
-                                    <p>All files encrypted (ransomware). Attacker demands KSH 50,000+ to decrypt. Banking credentials stolen. Identity theft begins.</p>
-                                </div>
-                                
-                                <div class="timeline-item">
-                                    <h4>NEXT  DAYS/WEEKS - Ongoing Damage</h4>
-                                    <p>Continuous monitoring of your activities. Stolen data sold on dark web. Your device used for criminal activities. Recovery cost: KSH 100,000+</p>
+                                    <h4>Result: ZERO DAMAGE ✓</h4>
+                                    <p style="color: #28a745;"><strong>Your device is completely safe.</strong> No malware installed. No data stolen. No files encrypted. Antivirus did its job!</p>
                                 </div>
                             </div>
                             
                             <div class="warning-box">
-                                <h3>🚨 Red Flags You Missed:</h3>
+                                <h3>🚨 Red Flags You Should Have Spotted:</h3>
                                 <ul>
                                     <li><strong>Wrong Domain:</strong> "dhl-tracking-ke.com" - Real DHL uses "dhl.com" or "dhl.co.ke"</li>
                                     <li><strong>Double File Extension:</strong> ".pdf.exe" - This is a classic malware trick. Real PDFs don't have .exe</li>
                                     <li><strong>Unexpected Delivery:</strong> You weren't expecting a package from DHL</li>
                                     <li><strong>Urgency Tactic:</strong> "Storage fees" and "final attempt" create false urgency</li>
                                     <li><strong>Suspicious File Size:</strong> 2.4 MB for a "PDF invoice" is unusually large</li>
-                                    <li><strong>Email Attachment:</strong> Legitimate companies use secure portals, not email attachments</li>
-                                    <li><strong>Grammar Issues:</strong> Professional companies have better copywriting</li>
+                                    <li><strong>Email Download Link:</strong> Legitimate companies use secure portals, not email download links</li>
                                     <li><strong>Generic Message:</strong> No personalized information (your actual name, address)</li>
-                                    <li><strong>Download Pressure:</strong> Legitimate services don't pressure immediate downloads</li>
+                                    <li><strong>Too Good to Be Real:</strong> Professional courier services don't work this way</li>
                                 </ul>
                             </div>
                             
                             <div class="success-box">
-                                <h3>✅ But This Was TRAINING - You're Safe!</h3>
+                                <h3>✅ Good News: You Were Protected!</h3>
                                 <p style="margin-bottom: 15px;">
-                                    No malware was actually downloaded. This simulation showed you exactly what a malware 
-                                    attack looks like and the devastating consequences of downloading suspicious files.
+                                    This simulation demonstrated how Windows Defender (or any good antivirus) protects you in real-time. 
+                                    Even though you clicked the malicious link, the antivirus caught the threat before it could harm your device.
                                 </p>
                                 
-                                <h4 style="margin-top: 20px; margin-bottom: 10px;">What You Should Do Instead:</h4>
+                                <h4 style="margin-top: 20px; margin-bottom: 10px;">🛡️ Why Antivirus Software is Critical:</h4>
                                 <ul>
+                                    <li><strong>Real-Time Protection:</strong> Scans files as they're downloaded, before they can execute</li>
+                                    <li><strong>Signature Detection:</strong> Recognizes known malware patterns instantly</li>
+                                    <li><strong>Behavior Analysis:</strong> Identifies suspicious behavior even from new threats</li>
+                                    <li><strong>Automatic Quarantine:</strong> Isolates threats immediately without user action needed</li>
+                                    <li><strong>Cloud Intelligence:</strong> Updates constantly with latest threat information</li>
+                                    <li><strong>Zero-Day Protection:</strong> Can block brand-new threats never seen before</li>
+                                </ul>
+                                
+                                <h4 style="margin-top: 20px; margin-bottom: 10px;">Best Practices to Stay Safe:</h4>
+                                <ul>
+                                    <li><strong>Keep Antivirus Enabled:</strong> Windows Defender is free and excellent - keep it on!</li>
+                                    <li><strong>Never Disable Protection:</strong> Even if a "program" asks you to - that's a red flag</li>
                                     <li><strong>Verify Before Download:</strong> Contact company directly using official channels (not email links)</li>
-                                    <li><strong>Check File Extensions:</strong> Be suspicious of .exe, .scr, .bat, .vbs, .js in attachments</li>
+                                    <li><strong>Check File Extensions:</strong> Be suspicious of .exe, .scr, .bat, .vbs, .js files</li>
                                     <li><strong>Use Tracking Numbers:</strong> Go directly to company website and enter tracking number yourself</li>
-                                    <li><strong>Enable Real Antivirus:</strong> Use reputable antivirus with real-time scanning (Windows Defender, Kaspersky, etc.)</li>
                                     <li><strong>Don't Disable Security:</strong> Never disable antivirus or firewall, even if "prompted" to</li>
                                     <li><strong>Scan Downloads:</strong> Right-click files and scan with antivirus before opening</li>
                                     <li><strong>Use Email Scanning:</strong> Good email providers (Gmail, Outlook) scan attachments automatically</li>
