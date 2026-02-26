@@ -690,6 +690,14 @@ async def phishing_demo():
                         <div class="email-preview">We prevented a suspicious sign-in attempt to your Google Account. Review activity...</div>
                         <span class="safe-badge">✓ SAFE</span>
                     </li>
+                    
+                    <li class="email-item phishing" onclick="showPhishingEmail('virus')">
+                        <div class="email-time">Today</div>
+                        <div class="email-sender">DHL Express (delivery@dhl-tracking-ke.com)</div>
+                        <div class="email-subject">📦 Package Delivery Failed - Invoice Attached</div>
+                        <div class="email-preview">Your package could not be delivered. Download the attached invoice to reschedule delivery. Document: Invoice_DHL_2026_8347.pdf.exe...</div>
+                        <span class="warning-badge">⚠️ MALWARE</span>
+                    </li>
                 </ul>
             </div>
             
@@ -869,6 +877,80 @@ async def phishing_demo():
                             </div>
                         </div>
                     `;
+                } else if (type === 'virus') {
+                    body.innerHTML = `
+                        <div class="fake-bank-page">
+                            <div class="url-bar">
+                                <span class="lock">🔒</span>
+                                <span class="fake-url">https://dhl-tracking-ke.com/download/invoice</span>
+                            </div>
+                            <div style="background: #ffcc00; padding: 25px; text-align: center;">
+                                <div style="display: inline-flex; align-items: center; gap: 15px;">
+                                    <div style="font-size: 48px; color: #d40511;">📦</div>
+                                    <div style="text-align: left;">
+                                        <h2 style="margin: 0; color: #d40511; font-size: 24px;">DHL Express</h2>
+                                        <p style="margin: 5px 0 0 0; color: #333;">Package Delivery Service</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bank-form">
+                                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 25px; border-radius: 5px;">
+                                    <p style="margin: 0; color: #856404; font-size: 14px;">
+                                        <strong>⚠️ Delivery Attempt Failed:</strong> We attempted to deliver your package but no one was available at the address.
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                                    <h3 style="color: #333; margin: 0 0 15px 0; font-size: 16px;">Shipment Details:</h3>
+                                    <table style="width: 100%; color: #666; font-size: 14px;">
+                                        <tr>
+                                            <td style="padding: 8px 0;"><strong>Tracking Number:</strong></td>
+                                            <td style="padding: 8px 0;">DHL8347926483KE</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0;"><strong>Delivery Attempts:</strong></td>
+                                            <td style="padding: 8px 0;">2 (Final attempt tomorrow)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0;"><strong>Package Weight:</strong></td>
+                                            <td style="padding: 8px 0;">2.5 kg</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px 0;"><strong>Storage Fee (after 48hrs):</strong></td>
+                                            <td style="padding: 8px 0; color: #d40511;"><strong>KSH 500/day</strong></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                <p style="color: #333; margin-bottom: 20px; line-height: 1.6; font-size: 14px;">
+                                    To reschedule your delivery or arrange pickup, please download and review the attached invoice document. 
+                                    The document contains your delivery options and payment details.
+                                </p>
+                                
+                                <div style="background: #e7f3ff; border: 2px solid #0066cc; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                                    <div style="display: flex; align-items: center; gap: 15px;">
+                                        <div style="font-size: 36px;">📄</div>
+                                        <div style="flex: 1; text-align: left;">
+                                            <div style="color: #333; font-weight: 600; margin-bottom: 5px;">Invoice_DHL_2026_8347.pdf.exe</div>
+                                            <div style="color: #666; font-size: 13px;">Size: 2.4 MB | Type: Document</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-danger" onclick="captureCredentials('virus')" style="background: #d40511; font-size: 16px; padding: 15px;">
+                                    📥 DOWNLOAD INVOICE NOW
+                                </button>
+                                
+                                <p style="color: #999; font-size: 12px; text-align: center; margin-top: 20px;">
+                                    ⏰ Download before tomorrow to avoid storage fees
+                                </p>
+                                
+                                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; font-size: 11px; color: #999; text-align: center;">
+                                    DHL Express Kenya | P.O. Box 19936-00501, Nairobi | www.dhl.co.ke
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 }
                 
                 modal.classList.add('active');
@@ -879,10 +961,11 @@ async def phishing_demo():
                 const body = document.getElementById('modalBody');
                 
                 // Show loading
+                const loadingMessage = type === 'virus' ? 'Downloading file...' : 'Verifying your information...';
                 body.innerHTML = `
                     <div class="loading active">
                         <div class="loader"></div>
-                        <p style="color: #666;">Verifying your information...</p>
+                        <p style="color: #666;">${loadingMessage}</p>
                     </div>
                 `;
                 
@@ -894,6 +977,148 @@ async def phishing_demo():
             
             function showAttackResults(type) {
                 const body = document.getElementById('modalBody');
+                
+                if (type === 'virus') {
+                    body.innerHTML = `
+                        <div style="padding: 30px;">
+                            <h2 style="color: #d9534f; margin-bottom: 20px; text-align: center; font-size: 28px;">
+                                🦠 MALWARE DOWNLOADED - SYSTEM COMPROMISED!
+                            </h2>
+                            
+                            <p style="text-align: center; color: #666; font-size: 16px; margin-bottom: 30px;">
+                                In a real attack, your entire device would now be infected with malware.
+                            </p>
+                            
+                            <div class="captured-data">
+                                <h3>🚨 What the Malware Would Do:</h3>
+                                <div class="data-item"><strong>Keylogger Installed:</strong> Records every keystroke (passwords, messages, credit cards)</div>
+                                <div class="data-item"><strong>Screen Capture:</strong> Takes screenshots of your banking, email, and sensitive data</div>
+                                <div class="data-item"><strong>Webcam Access:</strong> Activates camera without your knowledge</div>
+                                <div class="data-item"><strong>File Encryption:</strong> Ransomware locks all your files (documents, photos, videos)</div>
+                                <div class="data-item"><strong>Credential Theft:</strong> Steals saved passwords from browsers and apps</div>
+                                <div class="data-item"><strong>Banking Trojan:</strong> Intercepts mobile banking and M-Pesa transactions</div>
+                                <div class="data-item"><strong>Botnet Recruitment:</strong> Your device joins criminal network for DDoS attacks</div>
+                                <div class="data-item"><strong>Data Exfiltration:</strong> Uploads contacts, photos, documents to attacker's server</div>
+                                <div class="data-item"><strong>Cryptocurrency Miner:</strong> Uses your device to mine crypto (slows performance, increases bills)</div>
+                            </div>
+                            
+                            <div class="timeline">
+                                <h3 style="color: #333; margin-bottom: 20px;">Attack Timeline - What Just Happened:</h3>
+                                
+                                <div class="timeline-item">
+                                    <h4>0:00 - Malicious Email Sent</h4>
+                                    <p>Attacker sent fake DHL delivery email with malware disguised as PDF attachment.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>0:10 - Email Opened</h4>
+                                    <p>You opened email. Tracking pixel confirmed delivery and captured your IP address.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>0:15 - Malicious Link Clicked</h4>
+                                    <p>You clicked download button. Redirected to fake DHL website hosting the malware.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>0:20 - "File" Downloaded</h4>
+                                    <p>File "Invoice_DHL_2026_8347.pdf.exe" would download. The .exe extension reveals it's an executable program, not a PDF.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>0:25 - Malware Executed</h4>
+                                    <p>You double-clicked the file. Malware installs silently in background, no visible window.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>0:30 - Initial Infection</h4>
+                                    <p>Malware disables antivirus, creates hidden processes, establishes connection to command server.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>WITHIN 5 MINUTES - Payload Deployment</h4>
+                                    <p>Keylogger activates. Screen capture begins. Saved passwords extracted from browsers.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>WITHIN 1 HOUR - Full Compromise</h4>
+                                    <p>All files encrypted (ransomware). Attacker demands KSH 50,000+ to decrypt. Banking credentials stolen. Identity theft begins.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h4>NEXT  DAYS/WEEKS - Ongoing Damage</h4>
+                                    <p>Continuous monitoring of your activities. Stolen data sold on dark web. Your device used for criminal activities. Recovery cost: KSH 100,000+</p>
+                                </div>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h3>🚨 Red Flags You Missed:</h3>
+                                <ul>
+                                    <li><strong>Wrong Domain:</strong> "dhl-tracking-ke.com" - Real DHL uses "dhl.com" or "dhl.co.ke"</li>
+                                    <li><strong>Double File Extension:</strong> ".pdf.exe" - This is a classic malware trick. Real PDFs don't have .exe</li>
+                                    <li><strong>Unexpected Delivery:</strong> You weren't expecting a package from DHL</li>
+                                    <li><strong>Urgency Tactic:</strong> "Storage fees" and "final attempt" create false urgency</li>
+                                    <li><strong>Suspicious File Size:</strong> 2.4 MB for a "PDF invoice" is unusually large</li>
+                                    <li><strong>Email Attachment:</strong> Legitimate companies use secure portals, not email attachments</li>
+                                    <li><strong>Grammar Issues:</strong> Professional companies have better copywriting</li>
+                                    <li><strong>Generic Message:</strong> No personalized information (your actual name, address)</li>
+                                    <li><strong>Download Pressure:</strong> Legitimate services don't pressure immediate downloads</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="success-box">
+                                <h3>✅ But This Was TRAINING - You're Safe!</h3>
+                                <p style="margin-bottom: 15px;">
+                                    No malware was actually downloaded. This simulation showed you exactly what a malware 
+                                    attack looks like and the devastating consequences of downloading suspicious files.
+                                </p>
+                                
+                                <h4 style="margin-top: 20px; margin-bottom: 10px;">What You Should Do Instead:</h4>
+                                <ul>
+                                    <li><strong>Verify Before Download:</strong> Contact company directly using official channels (not email links)</li>
+                                    <li><strong>Check File Extensions:</strong> Be suspicious of .exe, .scr, .bat, .vbs, .js in attachments</li>
+                                    <li><strong>Use Tracking Numbers:</strong> Go directly to company website and enter tracking number yourself</li>
+                                    <li><strong>Enable Real Antivirus:</strong> Use reputable antivirus with real-time scanning (Windows Defender, Kaspersky, etc.)</li>
+                                    <li><strong>Don't Disable Security:</strong> Never disable antivirus or firewall, even if "prompted" to</li>
+                                    <li><strong>Scan Downloads:</strong> Right-click files and scan with antivirus before opening</li>
+                                    <li><strong>Use Email Scanning:</strong> Good email providers (Gmail, Outlook) scan attachments automatically</li>
+                                    <li><strong>Be Suspicious of Unexpected Emails:</strong> Verify legitimacy before clicking anything</li>
+                                    <li><strong>Keep Software Updated:</strong> Updates patch security vulnerabilities malware exploits</li>
+                                    <li><strong>Backup Your Data:</strong> Regular backups protect against ransomware</li>
+                                    <li><strong>Use Mobile Apps:</strong> Track packages using official DHL/courier mobile apps, not email links</li>
+                                </ul>
+                                
+                                <div style="margin-top: 25px; padding: 20px; background: white; border-radius: 8px; border: 2px solid #28a745;">
+                                    <h4 style="color: #155724; margin-bottom: 10px;">💡 File Extension Warning Signs:</h4>
+                                    <div style="color: #155724;">
+                                        <p style="margin: 5px 0;"><strong>DANGEROUS:</strong> .exe, .scr, .bat, .cmd, .vbs, .js, .jar, .app, .dmg</p>
+                                        <p style="margin: 5px 0;"><strong>SUSPICIOUS:</strong> .zip, .rar, .7z (if unexpected)</p>
+                                        <p style="margin: 5px 0;"><strong>DOUBLE EXTENSIONS:</strong> anything.pdf.exe, invoice.doc.exe = MALWARE!</p>
+                                        <p style="margin: 5px 0;"><strong>USUALLY SAFE (but verify sender):</strong> .pdf, .jpg, .png, .txt, .doc, .xlsx</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 8px; border: 2px solid #ffc107;">
+                                    <h4 style="color: #856404; margin-bottom: 10px;">⚠️ What If You Downloaded Real Malware?</h4>
+                                    <ol style="color: #856404; margin: 5px 0; padding-left: 20px;">
+                                        <li><strong>Disconnect Internet:</strong> Immediately (WiFi off, unplug ethernet)</li>
+                                        <li><strong>Don't Restart:</strong> Malware often activates on restart</li>
+                                        <li><strong>Run Antivirus Scan:</strong> Full system scan in Safe Mode</li>
+                                        <li><strong>Change All Passwords:</strong> From a DIFFERENT clean device</li>
+                                        <li><strong>Alert Your Bank:</strong> Watch for suspicious transactions</li>
+                                        <li><strong>Professional Help:</strong> Consider professional malware removal</li>
+                                        <li><strong>Report:</strong> Contact local cyber crime unit if data was stolen</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 30px;">
+                                <button class="btn btn-primary" onclick="closeModal()">Close & Return to Inbox</button>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
                 
                 body.innerHTML = `
                     <div style="padding: 30px;">
